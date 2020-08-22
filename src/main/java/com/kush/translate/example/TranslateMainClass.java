@@ -17,7 +17,13 @@ public class TranslateMainClass {
 
     public static void main(String args[]){
         try {
-            authExplicit("libs/civic-cedar-231707-fe76be122556.json");
+            /* you can create and download this file from your google console account.
+            and keep it inside /libs folder of your project. (If libs folder is not available then create it
+             into GoogleTranslateAPI project folder. GoogleTranslateAPI/libs)
+             Follow this https://cloud.google.com/docs/authentication/production#create_service_account to get JSON file
+             Follow this https://cloud.google.com/translate/docs/setup#api to enable Google Translate API*/
+            authExplicit("libs/credential.json");
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -33,11 +39,13 @@ public class TranslateMainClass {
 
         Translate translate = TranslateOptions.newBuilder().setCredentials(credentials).build().getService();
 
-        System.out.print("Enter a string: ");
+      /*  System.out.print("Enter a string: ");
         Scanner sc= new Scanner(System.in); //System.in is a standard input stream
-        String str= sc.nextLine();
+        String str= sc.nextLine();*/
 
-        Translation translation =translate.translate(str,Translate.TranslateOption.sourceLanguage("en"),Translate.TranslateOption.targetLanguage("gu"));
+        String str = "Superb";
+
+        Translation translation =translate.translate(str,Translate.TranslateOption.sourceLanguage("en"),Translate.TranslateOption.targetLanguage("ta"));
         System.out.println(translation.getTranslatedText());
     }
 }
